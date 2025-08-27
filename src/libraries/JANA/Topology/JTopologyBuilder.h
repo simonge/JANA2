@@ -29,8 +29,10 @@ public:
 
     // The topology itself
     std::vector<JArrow*> arrows;
+    std::map<std::string, size_t> arrow_name_to_id;
     std::vector<JEventQueue*> queues;            // Queues shared between arrows
     std::vector<JEventPool*> pools;          // Pools shared between arrows
+    std::map<JEventLevel, JEventPool*> level_to_pool;
     
     // Topology configuration
     size_t m_max_inflight_events = 1;
@@ -38,6 +40,7 @@ public:
     bool m_enable_stealing = false;
     int m_affinity = 0;
     int m_locality = 0;
+    std::set<JEventLevel> m_level_visited;
 
     // Things that probably shouldn't be here
     std::function<void(JTopologyBuilder&)> m_configure_topology;

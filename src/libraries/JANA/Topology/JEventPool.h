@@ -34,6 +34,8 @@ public:
 
     void NotifyThatAllChildrenFinished(JEvent* event, size_t location);
 
+    JEventLevel GetLevel() const { return m_level; }
+
     void Finalize();
 
 };
